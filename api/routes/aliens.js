@@ -5,7 +5,18 @@ const mongoose= require('mongoose')
 
 
 router.post('/createprofile',(req,res,next)=>{
-
+    // if(req.body.name==null || req.body.age==null || req.body.native_planet==null || req.body.weight==null || req.body.height==null || req.body.language==null)
+    // {
+    //     res.status(400).json({
+    //         message:"Invalid Request"
+    //     })
+    // }
+    // if(Alien.find({name:req.body.name}))
+    // {
+    //     res.status(400).json({
+    //         message:"Profile already exists"
+    //     })
+    // }
     const newAlien= ({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,

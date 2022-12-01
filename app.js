@@ -1,5 +1,6 @@
 const express= require("express")
 const app= express();
+const connection = require('./database/connection')
 const morgan= require('morgan');
 const bodyParser= require('body-parser')
 const alienRoutes=require('./api/routes/aliens')
@@ -9,7 +10,8 @@ app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: false})); 
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.jal2ogq.mongodb.net/?retryWrites=true&w=majority')
+
+connection();
 app.use('/alienprofile',alienRoutes)
 
 app.use((req,res,next) =>{
