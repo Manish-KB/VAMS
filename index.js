@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const connection = require('./database/connection');
+const connection = require('./api/middlewares/connection');
 const alienRoutes = require('./api/routes/aliens');
 
 const app = express();
