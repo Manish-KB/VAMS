@@ -3,7 +3,6 @@ const app= express();
 const morgan= require('morgan');
 const bodyParser= require('body-parser')
 const alienRoutes=require('./api/routes/aliens')
-
 const mongoose= require('mongoose');
 
 app.use(morgan('dev'))

@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
+const Schema = mongoose.Schema;
 
-const alienSchema= mongoose.Schema({
+const alienSchema= new Schema({
     _id:mongoose.Schema.Types.ObjectId,
     name:{
         type:String,
@@ -8,26 +9,26 @@ const alienSchema= mongoose.Schema({
     },
     age:{
         type:Number,
-        requird:true
+       
     },
     native_planet: {
         type:String,
-        requird:true
+       
     },
     weight: {
         type:Number,
-        requird:true
+      
     },
     height: {
         type:Number,
-        requird:true
+       
     },
     language: {
         type:String,
-        requird:true
-    },
+      
+    }
 
 
-})
+});
 
 module.exports=mongoose.model('Alien',alienSchema)
