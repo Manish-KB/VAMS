@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Alien = require('../models/alien');
 const mongoose = require('mongoose');
+const auth = require('../middlewares/auth');
 
 //Get all Aliens profiles
 router.get('', async (req, res) => {
@@ -70,16 +71,15 @@ router.get('/getprofile/:id', (req, res, next) => {
   Alien.findById(id)
     .exec()
     .then(doc => {
-      console.log(doc);
-      res.send(500).json(doc);
+      res.status(200).json({
+        message: 'Single Profile page',
+        profile: doc,
+      });
     })
     .catch(err => console.log(err));
-  res.json({
-    error: err,
-  });
 });
 
-router.delete('/deleteprofile/:id', (req, res, next) => {
+router.delete('/deleteprofile/:id', auth, (req, res, next) => {
   const id = req.params.id;
   Alien.remove({ _id: id })
     .exec()
@@ -94,13 +94,10 @@ router.delete('/deleteprofile/:id', (req, res, next) => {
     });
 });
 
-router.patch('/updateprofile/:id', (req, res, next) => {
+router.patch('/updateprofile/:id', auth, (req, res, next) => {
   const id = req.params.id;
-  const updateOps = {};
-  for (const ops of req.body) {
-    updateOps[opspopName] = value.value;
-  }
-  Alien.update({ _id: id }, { $set: updateOps })
+
+  Alien.updateMany({ _id: id }, { $set: req.body })
     .exec()
     .then(result => {
       res.status(200).json(result);

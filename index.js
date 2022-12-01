@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 
 const connection = require('./api/middlewares/connection');
 const alienRoutes = require('./api/routes/aliens');
+const adminRoutes = require('./api/routes/adminRoute');
 
 const app = express();
 dotenv.config();
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/alienprofile', alienRoutes);
-
+app.use('/admin', adminRoutes);
 //Error Handling Middlewares
 app.use((req, res, next) => {
   const error = new Error('Not Found');
