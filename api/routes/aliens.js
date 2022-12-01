@@ -96,7 +96,6 @@ router.delete('/deleteprofile/:id', auth, (req, res, next) => {
 
 router.patch('/updateprofile/:id', auth, (req, res, next) => {
   const id = req.params.id;
-
   Alien.updateMany({ _id: id }, { $set: req.body })
     .exec()
     .then(result => {

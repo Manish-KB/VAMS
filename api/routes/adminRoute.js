@@ -5,6 +5,17 @@ const auth = require('../middlewares/auth');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 
+router.get('/', auth, async (req, res) => {
+  try {
+    console.log(req.admin);
+    const admin = await Admin.findById({ _id: req.admin.id });
+    res.json(admin);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
 router.post('/login', async (req, res) => {
   const { name, password } = req.body;
   try {
