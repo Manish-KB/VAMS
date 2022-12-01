@@ -1,14 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-async function  connection()
-{const data = await mongoose.connect('mongodb+srv://admin:admin@cluster0.jal2ogq.mongodb.net/?retryWrites=true&w=majority',(err,client)=>{
-    if(err)
-    {
-        console.log(err)
+async function connection() {
+  const data = await mongoose.connect(
+    process.env.MONGODB_URL,
+    (err, client) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log('Connection is succesful');
     }
-    console.log("Connection is succesful")
-})
+  );
 }
 
-
-module.exports= connection;
+module.exports = connection;
